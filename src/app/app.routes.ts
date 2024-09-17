@@ -10,6 +10,7 @@ import { RolesComponent } from './components/roles/roles.component';
 import { PermissionsComponent } from './components/permissions/permissions.component';
 import { CompaniesComponent } from './components/companies/companies.component';
 import { SaleComponent } from './components/sale/sale.component';
+import { RegisterFormUserComponent } from './components/register-form-user/register-form-user.component';
 
 export const routes: Routes = [
     { path:'login',component:LoginComponent },
@@ -23,5 +24,6 @@ export const routes: Routes = [
     { path:'categories',component:CategoryComponent },
     { path:'products',component:ProductsComponent },
     { path:'company',component:CompaniesComponent },
-    { path:'sales',component:SaleComponent }
+    { path:'sales',component:SaleComponent },
+    { path:'register-user',component:RegisterFormUserComponent }
 ];
