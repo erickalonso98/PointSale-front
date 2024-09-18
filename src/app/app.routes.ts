@@ -11,6 +11,8 @@ import { PermissionsComponent } from './components/permissions/permissions.compo
 import { CompaniesComponent } from './components/companies/companies.component';
 import { SaleComponent } from './components/sale/sale.component';
 import { RegisterFormUserComponent } from './components/register-form-user/register-form-user.component';
+import { UserFormUpdateComponent } from './components/user-form-update/user-form-update.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
 
 export const routes: Routes = [
     { path:'login',component:LoginComponent },
@@ -25,5 +27,7 @@ export const routes: Routes = [
     { path:'products',component:ProductsComponent },
     { path:'company',component:CompaniesComponent },
     { path:'sales',component:SaleComponent },
-    { path:'register-user',component:RegisterFormUserComponent }
+    { path:'register-user',component:RegisterFormUserComponent },
+    { path:'update-user/:id',component:UserFormUpdateComponent },
+    { path:'user-detail/:id',component:UserDetailComponent }
 ];

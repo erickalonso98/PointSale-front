@@ -5,6 +5,7 @@
           <td colspan="2">Nombre</td>
           <td>Apellidos</td>
           <td>Correo</td>
+          <td>Rol</td>
           <td>Foto</td>
           <td>Fecha de Creacion</td>
           <td>Opciones</td>
@@ -14,15 +15,22 @@
       @for(user of this.users; track user.id){
       <tr class="table-active">
         <th scope="row">{{ user.id }}</th>
-        <td colspan="2" class="table-active">{{ user.name }}</td>
+        <td colspan="2">{{ user.name }}</td>
         <td>{{ user.lastname }}</td>
         <td>{{ user.email }}</td>
-        <td>{{ user.photo }}</td>
+          @for(role of user.roles; track role.id){
+            <td>{{ role.name }}</td>
+          }
+        @if(!user.photo){
+          <td>
+            <img alt="usuario" width="70px" height="70px" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+          </td>
+        }
         <td>{{ user.created_at }}</td>
         <td>
-          <a href="" class="btn btn-warning"><i class="lni lni-book"></i></a> -
-          <a href="" class="btn btn-info"><i class="lni lni-spinner-arrow"></i></a> -
-          <a href="" class="btn btn-danger"><i class="lni lni-trash-can"></i></a>
+          <a routerLink="/user-detail/1" routerLinkActive="active" class="btn btn-warning"><i class="lni lni-book"></i></a> -
+          <a routerLink="/update-user/1" routerLinkActive="active" class="btn btn-info"><i class="lni lni-spinner-arrow"></i></a> -
+          <a (click)="this.deleteUser(user.id)" routerLinkActive="active" class="btn btn-danger"><i class="lni lni-trash-can"></i></a>
         </td>
       </tr>
     }

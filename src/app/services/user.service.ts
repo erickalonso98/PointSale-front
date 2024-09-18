@@ -18,18 +18,18 @@ export class UserService {
    }
 
    public Users(){
-      let headers = this.getHeaders().set('Content-Type','application/json');
+      let headers = this.getHeaders();
       return this._http.get<IUser>(`${this.url}/users/`,{ headers });
    }
 
    public User(id:number){
-      let headers = this.getHeaders().set('Content-Type','application/json');
+      let headers = this.getHeaders();
       return this._http.get<IUser>(`${this.url}/user/${id}`,{ headers });
    }
 
    public register(user:IUser){
       let json = JSON.stringify(user);
-      let headers = this.getHeaders().set('Content-Type','application/json');
+      let headers = this.getHeaders();
       return this._http.post<IUser>(`${this.url}/user/register/`,json,{ headers });
    }
 
@@ -40,18 +40,18 @@ export class UserService {
       };
 
       let json = JSON.stringify(params);
-      let headers = new HttpHeaders().set('Content-Type','application/json');
+      let headers = new HttpHeaders().set('Content-Type','application/json');;
       return this._http.post<IUser>(`${this.url}/user/login/`,json,{ headers });
   }
 
   public update(user:IUser,id:number){
-      let headers = this.getHeaders().set('Content-Type','application/json');
+      let headers = this.getHeaders();
       let json = JSON.stringify(user);
       return this._http.put<IUser>(`${this.url}/user/update-user/${id}`,json,{ headers });
   }
 
   public deleteUser(id:number){
-      let headers = this.getHeaders().set('Content-Type','application/json');
+      let headers = this.getHeaders();
       return this._http.delete<IUser>(`${this.url}/user/removed-user/${id}`,{ headers });
   }
 
@@ -71,7 +71,7 @@ export class UserService {
     let token = this.getToken();
 
     if(token){
-       return new HttpHeaders({'Authorization':`Bearer ${token}`});
+       return new HttpHeaders({'Authorization':`Bearer ${token}`}).set('Content-Type','application/json');
     }else{
        return new HttpHeaders();
     }

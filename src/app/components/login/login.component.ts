@@ -47,6 +47,8 @@ export class LoginComponent {
             form.reset();
         },
         (error:any) => {
+          console.log(error);
+          
           if(error.error.status == "error"){
             Swal.fire({
               icon: error.error.status,
