@@ -1,7 +1,9 @@
 import { Injectable,inject } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { IUser } from '../models/User';
 import { global } from './global';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,7 @@ export class UserService {
 
   public url:string;
   private _http = inject(HttpClient);
+  private _router = inject(Router);
   
   public token!:string;
 
@@ -75,6 +78,25 @@ export class UserService {
     }else{
        return new HttpHeaders();
     }
+ }
+
+ public logout(){
+  Swal.fire({
+    title: "¿Quieres salir del sistema?",
+    text: "La sesión actual se cerrará y saldrás del sistema",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Si, Salir!",
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if(result.isConfirmed){
+      localStorage.removeItem('token');
+      this.token = "";
+      this._router.navigate(["/login"]);
+    }
+  });
  }
 
 }

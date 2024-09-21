@@ -5,7 +5,50 @@
         </div>
         <div class="col px-4 mt-5">
             <h1>Contenido Principal de Formulario de registro de usuarios</h1>
-            <p>Este es el espacio para el contenido principal.</p>
+            <div class="container w-50 mt-5">
+                <div class="card card-body">
+                    <h2 class="text-center">Registrar Usuario</h2>
+                    <hr>
+                    <form #registerUser="ngForm" (ngSubmit)="this.onSubmit(this.registerUser)">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="this.user.name" required="">
+                            @if(!this.name.valid && this.name.touched){
+                                <small class="text-danger">El nombre es obligatorio</small>
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname" class="form-label mt-2">Apellidos</label>
+                            <input type="text" class="form-control" name="lastname" #lastname="ngModel" [(ngModel)]="this.user.lastname" required="">
+                            @if(!this.lastname.valid && this.lastname.touched){
+                                <small class="text-danger">Los apellidos son obligatorio</small>
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label mt-2">Correo Electronico</label>
+                            <input type="email" class="form-control" name="email" #email="ngModel" [(ngModel)]="this.user.email" required="">
+                            @if(!this.email.valid && this.email.touched){
+                                <small class="text-danger">El correo electronico es obligatorio</small>
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="form-label mt-2">Contraseña</label>
+                            <input type="password" class="form-control" name="password" #password="ngModel" [(ngModel)]="this.user.password" required="">
+                            @if(!this.password.valid && this.password.touched){
+                                <small class="text-danger">la contraseña es obligatorio</small>
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label for="password_confirmation" class="form-label mt-2">confirmar Contraseña</label>
+                            <input type="password" class="form-control" name="password_confirmation" #password_confirmation="ngModel" [(ngModel)]="this.user.password_confirmation" required="">
+                            @if(!this.password_confirmation.valid && this.password_confirmation.touched){
+                                <small class="text-danger">la contraseña de confirmacion obligatorio</small>
+                            }
+                        </div>
+                        <input type="submit" class="btn btn-primary mt-4" value="Registrar" [disabled]="this.registerUser.invalid">
+                    </form>
+                </div>
+            </div> 
         </div>      
     </div>
 </div>

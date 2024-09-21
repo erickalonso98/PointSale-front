@@ -7,6 +7,7 @@ export interface IUser{
     email:string;
     roles?:Array<IRole>
     password:string;
+    password_confirmation:string;
     photo?:string;
     created_at?:Date;
     updated_at?:Date;

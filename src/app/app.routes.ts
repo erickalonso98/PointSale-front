@@ -13,6 +13,9 @@ import { SaleComponent } from './components/sale/sale.component';
 import { RegisterFormUserComponent } from './components/register-form-user/register-form-user.component';
 import { UserFormUpdateComponent } from './components/user-form-update/user-form-update.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
+import { CreateRoleComponent } from './components/create-role/create-role.component';
+import { RoleDetailComponent } from './components/role-detail/role-detail.component';
+import { RoleFormUpdateComponent } from './components/role-form-update/role-form-update.component';
 
 export const routes: Routes = [
     { path:'login',component:LoginComponent },
@@ -29,5 +32,8 @@ export const routes: Routes = [
     { path:'sales',component:SaleComponent },
     { path:'register-user',component:RegisterFormUserComponent },
     { path:'update-user/:id',component:UserFormUpdateComponent },
-    { path:'user-detail/:id',component:UserDetailComponent }
+    { path:'user-detail/:id',component:UserDetailComponent },
+    { path:'create-role',component:CreateRoleComponent },
+    { path:'role-detail/:id',component:RoleDetailComponent },
+    { path:'role-form-update/:id',component:RoleFormUpdateComponent }
 ];

@@ -1,0 +1,28 @@
+<table class="table table-hover w-100 text-center mt-3">
+    <thead>
+        <tr>
+            <th scope="row">#</th>
+            <td colspan="2">Nombre</td>
+            <td>Fecha de Creacion</td>
+            <td>Opciones</td>
+        </tr>
+      </thead>
+      <tbody>
+        @for(role of this.roles; track role.id){
+            @if(role){
+                <tr>
+                    <th scope="row">{{ role.id }}</th>
+                    <td colspan="2">{{ role.name }}</td>
+                    <td>{{ role.created_at }}</td>
+                    <td>
+                        <a routerLink="/role-detail/{{ role.id }}" routerLinkActive="active" class="btn btn-warning"><i class="lni lni-book"></i></a> -
+                        <a routerLink="/role-form-update/{{ role.id }}" routerLinkActive="active" class="btn btn-info"><i class="lni lni-spinner-arrow"></i></a> -
+                        <a (click)="this.deleteRole(role.id)" routerLinkActive="active" class="btn btn-danger"><i class="lni lni-trash-can"></i></a>
+                    </td>
+                </tr>
+            }@else{
+                <p class="h3">{{ this.message }}</p>
+            }
+        }
+      </tbody>
+</table>
