@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MenuComponent } from '../menu/menu.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -12,4 +13,11 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 })
 export class DashboardAdminComponent {
 
+  public title:string;
+  constructor(){
+    this.title = "Bienvenido";
+    Swal.fire({
+      title:this.title
+    });
+  }
 }

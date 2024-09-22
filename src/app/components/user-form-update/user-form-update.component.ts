@@ -49,19 +49,32 @@ export class UserFormUpdateComponent implements OnInit{
   }
 
   public onSubmit(form:NgForm):void{
-    this._userService.update(this.user,this.user.id).subscribe(
-      (response:any) => {
-        if(response.status == this.status){
-          this.message = response.message;
-          Swal.fire({
-            title: "¡Enhorabuena!",
-            text: this.message,
-            icon:  response.status
-          });
-
-          this._router.navigate(["/users"]);
-        }
+    Swal.fire({
+      title: "¿Quieres guardar los cambios?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Actualizar",
+      denyButtonText: `no guardar`,
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if(result.isConfirmed){
+        this._userService.update(this.user,this.user.id).subscribe(
+          (response:any) => {
+            if(response.status == this.status){
+              this.message = response.message;
+              Swal.fire({
+                title: "¡Enhorabuena!",
+                text: this.message,
+                icon:  response.status
+              });
+    
+              this._router.navigate(["/users"]);
+            }
+          }
+        );
+      }else if (result.isDenied){
+        Swal.fire("Los cambios no se actualizaron", "", "info");
       }
-    );
+    });
   }
 }

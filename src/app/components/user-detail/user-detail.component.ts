@@ -1,4 +1,5 @@
 import { Component,inject,OnInit } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { Router,ActivatedRoute,Params } from '@angular/router';
 import { UserService } from '../../services/user.service';
@@ -7,7 +8,7 @@ import { IUser } from '../../models/User';
 @Component({
   selector: 'app-user-detail',
   standalone: true,
-  imports: [SidebarComponent],
+  imports: [SidebarComponent,RouterLink, RouterLinkActive],
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.css'
 })

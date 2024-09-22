@@ -1,1 +1,38 @@
-<p>role-form-update works!</p>
+<div class="container-fluid">
+    <div class="row nowrap">
+        <div class="bg-dark col-auto col-md-4 col-lg-2 min-vh-100 d-flex flex-column justify-content-between">
+            <app-sidebar/>
+        </div>
+        <div class="col px-4 mt-5">
+            <h1>Contenido Principal</h1>
+            <p>Este es el espacio para el contenido principal.</p>
+            <div class="container mt-5 w-50">
+                <div class="card card-body">
+                    <h2 class="text-center">{{ this.title }}</h2>
+                    <hr>
+                    <form #formRoleupdate="ngForm" (ngSubmit)="this.onSubmit(this.formRoleupdate)">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="this.role.name" required="">
+                            @if(!this.name.valid && this.name.touched){
+                                <small class="text-danger">El nombre del rol es requerido</small>
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label for="user_id" class="form-label  mt-2">Usuario Asignar Rol</label>
+                            <select class="form-control" name="user_id" #user_id="ngModel" [(ngModel)]="this.role.user_id">
+                                @for(user of this.users; track user.id){
+                                    <option value="{{ user.id }}">{{ user.name }}</option>
+                                }
+                            </select>
+                        </div>
+                        <input type="submit" class="btn btn-primary mt-3" value="Actualizar" [disabled]="this.formRoleupdate.invalid">
+                    </form>
+                </div>
+            </div>
+        </div>      
+    </div>
+</div>
+
+
+
