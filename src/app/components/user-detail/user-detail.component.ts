@@ -19,10 +19,12 @@ export class UserDetailComponent implements OnInit{
   private _userService = inject(UserService);
   public user:IUser;
   public status:string;
+  public title:string;
 
   constructor(){
     this.status = "success";
     this.user = {} as IUser;
+    this.title = "Detalle de Usuario";
   }
 
   ngOnInit(): void {

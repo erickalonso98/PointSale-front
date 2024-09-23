@@ -7,15 +7,23 @@
             <div class="container mt-5 w-50">
                 <div class="card text-center">
                     <div class="card-header">
-                      Featured
+                      Informacion
                     </div>
                     <div class="card-body">
-                      <h5 class="card-title">Special title treatment</h5>
-                      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                      <a routerLink="/users" routerLinkActive="active" class="btn btn-primary">Regresar</a>
+                      <h5 class="card-title">{{ this.title }}</h5>
+                      @if(!this.user.photo){
+                        <p class="card-text">
+                          <img alt="usuario" width="100px" height="100px" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                        </p>
+                      }
+                      <p class="card-text">Num. Identificador:{{ this.user.id }}</p>
+                      <p class="card-text">Nombre:{{ this.user.name }}</p>
+                      <p class="card-text">Apellidos:{{ this.user.lastname }}</p>
+                      <p class="card-text">Correo:{{ this.user.email }}</p>
+                      <a routerLink="/users" routerLinkActive="active" class="btn btn-info">Regresar</a>
                     </div>
                     <div class="card-footer text-muted">
-                      2 days ago
+                      Creacion: {{ this.user.created_at }}
                     </div>
                   </div>
             </div>
