@@ -1,4 +1,5 @@
 import { Component,inject,OnInit } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { Router,ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -12,7 +13,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-role-form-update',
   standalone: true,
-  imports: [SidebarComponent,FormsModule],
+  imports: [SidebarComponent,FormsModule,RouterLink, RouterLinkActive ],
   templateUrl: './role-form-update.component.html',
   styleUrl: './role-form-update.component.css'
 })

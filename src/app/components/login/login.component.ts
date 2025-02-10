@@ -22,6 +22,7 @@ export class LoginComponent {
     public user:IUser;
 
     public token!:string;
+    public identity!:IUser;
 
     constructor(){
       this.title = 'Login';
@@ -38,8 +39,11 @@ export class LoginComponent {
             if(response.status == "success"){
  
               this.token = response.token;
+              this.identity = response.identity;
               console.log(this.token);
+              console.log(this.identity);
               localStorage.setItem("token",this.token);
+              localStorage.setItem("identity",JSON.stringify(this.identity));
 
               this._router.navigate(['/Dashboar-Admin']);
 

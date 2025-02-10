@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="row nowrap">
+        <div class="bg-dark col-auto col-md-4 col-lg-2 min-vh-100 d-flex flex-column justify-content-between">
+            <app-sidebar/>
+        </div>
+        <div class="col px-4 mt-5">
+            <h1>Contenido Principal de formulario de permisos</h1>
+            <div class="container w-50 mt-5">
+                <div class="card card-body">
+                    <h2 class="text-center">Registrar Permiso</h2>
+                    <hr>
+                    <form #createPermission="ngForm" (ngSubmit)="this.onSubmit(this.createPermission)">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="this.permission.name" required="">
+                            @if(!this.name.valid && this.name.touched){
+                                <small class="invalid-feedback d-block">El nombre del permiso es requerido</small>
+                            }
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3" [disabled]="this.createPermission.invalid">Registrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>      
+    </div>
+</div>
+
+
+

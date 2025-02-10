@@ -15,9 +15,11 @@ export class UserService {
   private _router = inject(Router);
   
   public token!:string;
+  public identity:IUser;
 
   constructor() {
     this.url = global.url;
+    this.identity = {} as IUser;
    }
 
    public Users(){
@@ -43,7 +45,7 @@ export class UserService {
       };
 
       let json = JSON.stringify(params);
-      let headers = new HttpHeaders().set('Content-Type','application/json');;
+      let headers = new HttpHeaders().set('Content-Type','application/json');
       return this._http.post<IUser>(`${this.url}/user/login/`,json,{ headers });
   }
 
@@ -70,6 +72,18 @@ export class UserService {
     return this.token;
   }
 
+  public getIdentity(){
+    let identity = localStorage.getItem("identity");
+
+    if(identity && identity != "undefined"){
+      this.identity = identity = JSON.parse(identity);
+    }else{
+      this.identity = {} as IUser;
+    }
+
+    return this.identity;
+  }
+
   public getHeaders(){
     let token = this.getToken();
 
@@ -93,7 +107,9 @@ export class UserService {
   }).then((result) => {
     if(result.isConfirmed){
       localStorage.removeItem('token');
+      localStorage.removeItem('identity');
       this.token = "";
+      this.identity = {} as IUser;
       this._router.navigate(["/login"]);
     }
   });

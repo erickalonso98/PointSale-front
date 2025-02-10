@@ -1,4 +1,5 @@
 import { Component,inject,OnInit } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { FormsModule } from '@angular/forms';
 import { NgForm } from '@angular/forms';
@@ -10,7 +11,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-user-form-update',
   standalone: true,
-  imports: [SidebarComponent,FormsModule],
+  imports: [SidebarComponent,FormsModule,RouterLink, RouterLinkActive ],
   templateUrl: './user-form-update.component.html',
   styleUrl: './user-form-update.component.css'
 })
