@@ -1,1 +1,56 @@
-<p>create-provider works!</p>
+<div class="container-fluid">
+    <div class="row nowrap">
+        <div class="bg-dark col-auto col-md-4 col-lg-2 min-vh-100 d-flex flex-column justify-content-between">
+            <app-sidebar/>
+        </div>
+        <div class="col px-4 mt-5">
+            <h1>Contenido Principal de formulario de clientes</h1>
+            <p>Este es el espacio para el contenido principal.</p>
+            <div class="container mt-3 w-50">
+                <div class="card card-body">
+                    <h2 class="text-center text-uppercase">{{ this.title }}</h2>
+                    <hr>
+                     <form #createProvider="ngForm" (ngSubmit)="this.onSubmit(createProvider)">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="this.provider.name" required="">
+                            @if(!name.valid && name.touched){
+                                <small class="text-danger">El nombre es requerido</small>
+                            }
+                        </div><br>
+                        <div class="form-group">
+                            <label for="lastname" class="form-label">Apellidos</label>
+                            <input type="text" class="form-control" name="lastname" #lastname="ngModel" [(ngModel)]="this.provider.lastname" required="">
+                            @if(!lastname.valid && lastname.touched){
+                                <small class="text-danger">Los apellidos son requeridos</small>
+                            }
+                        </div><br>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Correo electronico</label>
+                            <input type="email" class="form-control" name="email" #email="ngModel" [(ngModel)]="this.provider.email" required="">
+                            @if(!email.valid && email.touched){
+                                <small class="text-danger">El correo es requerido</small>
+                            }
+                        </div><br>
+                        <div class="form-group">
+                            <label for="company" class="form-label">Empresa</label>
+                            <input type="text" class="form-control" name="company" #company="ngModel" [(ngModel)]="this.provider.company" required="">
+                            @if(!company.valid && company.touched){
+                                <small class="text-danger">La empresa es requerida</small>
+                            }
+                        </div><br>
+                        <div class="form-group">
+                            <label for="address" class="form-label">Direccion</label>
+                            <input type="text" class="form-control" name="address" #address="ngModel" [(ngModel)]="this.provider.address">
+                        </div><br>
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Telefono</label>
+                            <input type="text" class="form-control" name="phone" #phone="ngModel" [(ngModel)]="this.provider.phone">
+                        </div>
+                        <input type="submit" value="Registrar" class="btn btn-primary mt-4" [disabled]="createProvider.invalid">
+                     </form>
+                </div>
+            </div> 
+        </div>    
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<table class="table table-hovern w-100 mt-3">
+    <thead>
+        <tr>
+            <th scope="row">#</th>
+            <th colspan="2">Nombre</th>
+            <th>Apellidos</th>
+            <th>Correo</th>
+            <th>Empresa</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+            <th>Creacion</th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+   
+        @if(this.providers && this.providers.length != 0){
+            @for(provider of this.providers; track provider.id){
+                <tr>
+                    <td>{{ provider.id }}</td>
+                    <td>{{ provider.name }}</td>
+                    <td>{{ provider.lastname }}</td>
+                    <td>{{ provider.email }}</td>
+                    <td>{{ provider.company }}</td>
+                    <td>{{ provider.address }}</td>
+                    <td>{{ provider.phone }}</td>
+                    <td>{{ provider.created_at }}</td>
+                    <td>
+                        <a routerLink="/provider-detail/{{ provider.id }}" routerLinkActive="active" class="btn btn-warning"><i class="lni lni-book"></i></a> -
+                        <a routerLink="/provider-form-update/{{ provider.id }}" routerLinkActive="active" class="btn btn-info"><i class="lni lni-spinner-arrow"></i></a> - 
+                        <a (click)="this.deleteProvider(provider.id)" routerLinkActive="active" class="btn btn-danger"><i class="lni lni-trash-can"></i></a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@if(!this.providers || this.providers.length == 0){
+    <tr class="d-flex justify-content-center align-items-center w-100">
+        <td colspan="9">
+            {{ this.message }}
+        </td>
+    </tr>
+}

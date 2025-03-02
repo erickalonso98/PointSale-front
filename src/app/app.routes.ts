@@ -26,6 +26,12 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CreateClientComponent } from './components/create-client/create-client.component';
 import { ClientDetailComponent } from './components/client-detail/client-detail.component';
 import { ClientUpdateComponent } from './components/client-update/client-update.component';
+import { CreateProviderComponent } from './components/create-provider/create-provider.component';
+import { ProviderDetailComponent } from './components/provider-detail/provider-detail.component';
+import { ProviderFormUpdateComponent } from './components/provider-form-update/provider-form-update.component';
+import { CreateCategoryComponent } from './components/create-category/create-category.component';
+import { CategoryDetailComponent } from './components/category-detail/category-detail.component';
+import { CategoryFormUpdateComponent } from './components/category-form-update/category-form-update.component';
 
 export const routes: Routes = [
     { path:'login',component:LoginComponent },
@@ -52,5 +58,11 @@ export const routes: Routes = [
     { path:'create-client',component:CreateClientComponent },
     { path:'client-detail/:id',component:ClientDetailComponent },
     { path:'client-update-form/:id',component:ClientUpdateComponent },
+    { path:'create-provider',component:CreateProviderComponent },
+    { path:'provider-detail/:id',component:ProviderDetailComponent },
+    { path:'provider-form-update/:id',component:ProviderFormUpdateComponent },
+    { path:'create-category',component:CreateCategoryComponent },
+    { path:'category-detail/:id',component:CategoryDetailComponent },
+    { path:'category-update/:id',component:CategoryFormUpdateComponent },
     { path:'**',component:NotFoundComponent }
 ];
