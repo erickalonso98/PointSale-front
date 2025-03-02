@@ -9,4 +9,13 @@ import { Component } from '@angular/core';
 })
 export class NotFoundComponent {
 
+  public title:string;
+  public code:number;
+  public message:string;
+
+  constructor(){
+    this.title = 'página no encontrada';
+    this.message = 'El recurso solicitado no se pudo encontrar en este servidor.';
+    this.code = 404;
+  }
 }
