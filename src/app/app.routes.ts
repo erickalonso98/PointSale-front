@@ -32,11 +32,16 @@ import { ProviderFormUpdateComponent } from './components/provider-form-update/p
 import { CreateCategoryComponent } from './components/create-category/create-category.component';
 import { CategoryDetailComponent } from './components/category-detail/category-detail.component';
 import { CategoryFormUpdateComponent } from './components/category-form-update/category-form-update.component';
+import { BoxComponent } from './components/box/box.component';
+import { CreateProductFormComponent } from './components/create-product-form/create-product-form.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { ProductUpdateComponent } from './components/product-update/product-update.component';
 
 export const routes: Routes = [
     { path:'login',component:LoginComponent },
     { path:'',pathMatch:'full',redirectTo:'/login' },
     { path:'Dashboar-Admin',component:DashboardAdminComponent,canActivate:[identityGuard] },
+    { path:'Box',component:BoxComponent },
     { path:'users',component:UsersComponent,canActivate:[identityGuard] },
     { path:'roles',component:RolesComponent,canActivate:[identityGuard] },
     { path:'permissions',component:PermissionsComponent,canActivate:[identityGuard] },
@@ -64,5 +69,8 @@ export const routes: Routes = [
     { path:'create-category',component:CreateCategoryComponent },
     { path:'category-detail/:id',component:CategoryDetailComponent },
     { path:'category-update/:id',component:CategoryFormUpdateComponent },
+    { path:'create-product',component:CreateProductFormComponent },
+    { path:'product-detail/:id',component:ProductDetailComponent },
+    { path:'product-form-update/:id',component:ProductUpdateComponent },
     { path:'**',component:NotFoundComponent }
 ];

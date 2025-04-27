@@ -1,0 +1,46 @@
+<table class="table table-hover text-center w-100 mt-5">
+    <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Codigo</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Precio de compra</th>
+          <th scope="col">Precio de venta</th>
+          <th scope="col">Stock</th>
+          <th scope="col">Stock minimo</th>
+          <th scope="col">Estado</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if(this.products && this.products.length != 0){
+            @for(product of this.products; track product.id){
+                <tr>
+                    <th scope="row">{{ product.id }}</th>
+                    <td>{{ product.code }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.purchase_price }}</td>
+                    <td>{{ product.sale_price }}</td>
+                    <td>{{ product.stock }}</td>
+                    <td>{{ product.minimum_stock }}</td>
+                    <td>{{ product.status }}</td>
+                    <td>
+                        <a routerLink="/product-detail/{{ product.id }}" routerLinkActive="active" class="btn btn-warning"><i class="lni lni-book"></i></a> -
+                        <a routerLink="/product-form-update/{{ product.id }}" routerLinkActive="active" class="btn btn-info"><i class="lni lni-spinner-arrow"></i></a> - 
+                        <a (click)="this.deleteProduct(product.id)" routerLinkActive="active" class="btn btn-danger"><i class="lni lni-trash-can"></i></a>
+                    </td>
+                </tr> 
+            }
+        }   
+      </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
+      <li class="page-item active"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+    </ul>
+  </nav>

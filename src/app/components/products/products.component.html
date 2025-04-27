@@ -3,9 +3,14 @@
         <div class="bg-dark col-auto col-md-4 col-lg-2 min-vh-100 d-flex flex-column justify-content-between">
             <app-sidebar/>
         </div>
-        <div class="col px-4 mt-5">
+        <div class="col px-4 mt-5 w-100">
             <h1>Contenido Principal de productos</h1>
             <p>Este es el espacio para el contenido principal.</p>
+            <a class="btn btn-success mt-2" routerLink="/create-product" routerLinkActive="active">
+                <i class="lni lni-plus"></i>
+                Agregar Producto
+            </a>
+             <app-product-list></app-product-list>  
         </div>      
     </div>
 </div>

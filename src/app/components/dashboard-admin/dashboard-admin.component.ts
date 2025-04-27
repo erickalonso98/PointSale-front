@@ -1,22 +1,27 @@
-import { Component,OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component,OnInit, ViewChild, ElementRef, AfterViewInit,inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Chart, ChartConfiguration, ChartType,registerables } from 'chart.js';
+import { CategoryService } from '../../services/category.service';
 import { MenuComponent } from '../menu/menu.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
-
+import { ICategory } from '../../models/Category';
+import { ClockComponent } from '../clock/clock.component';
 
 Chart.register(...registerables); 
 
 @Component({
   selector: 'app-dashboard-admin',
   standalone: true,
-  imports: [RouterLinkActive,RouterLink,MenuComponent,SidebarComponent],
+  imports: [RouterLinkActive,RouterLink,MenuComponent,SidebarComponent,ClockComponent],
   templateUrl: './dashboard-admin.component.html',
   styleUrl: './dashboard-admin.component.css'
 })
 export class DashboardAdminComponent implements OnInit{
 
   public title!:string;
+  public total:number;
+  public status:string;
+  private _categoryService = inject(CategoryService);
   
   @ViewChild('canvas') canvas!: ElementRef<HTMLCanvasElement>;
   public chart!: Chart;
@@ -26,10 +31,15 @@ export class DashboardAdminComponent implements OnInit{
     Swal.fire({
       title:this.title
     });*/
+
+    this.total = 0;
+    this.status = '';
+
   }
 
   ngOnInit(): void {
     //this.loadGraph();
+    this.getCountCategory();
   }
 
   ngAfterViewInit(){
@@ -56,6 +66,19 @@ export class DashboardAdminComponent implements OnInit{
         }
       }
     });
+  }
+
+  public getCountCategory():void{
+    this._categoryService.countCategory().subscribe(
+      (response:any) => {
+        this.status = 'success';
+        if(response.status == this.status){
+          console.log(response);
+          this.total = response.total;
+          console.log(this.total);
+        }
+      }
+    );
   }
 
 }

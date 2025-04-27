@@ -49,7 +49,34 @@ export class ListCategoryComponent implements OnInit{
   }
 
 public deleteCategory(id:number):void{
-  
+  Swal.fire({
+    title: "Estas seguro?",
+    text: "No podrás revertir esto.!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Si, borralo!",
+    cancelButtonText: 'Cancelar'
+  }).then((result)=> {
+    if(result.isConfirmed){
+      this._categoryService.destroyCategory(id).subscribe(
+        (response:any) => {
+          if(response.status == this.status){
+            this.status = 'success';
+            this.message = response.message;
+            Swal.fire({
+              title: "Eliminado!",
+              text: this.message,
+              icon: response.status
+            });
+          }
+
+          this.getCategories();
+        }
+      );
+    }
+  });
 }
 
 }

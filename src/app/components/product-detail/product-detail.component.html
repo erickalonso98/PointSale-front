@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <div class="row nowrap">
+        <div class="bg-dark col-auto col-md-4 col-lg-2 min-vh-100 d-flex flex-column justify-content-between">
+            <app-sidebar/>
+        </div>
+        <div class="col px-4 mt-5">
+            <h1>Contenido Principal</h1>
+            <div class="container  mt-5 w-50">
+                <div class="card text-center">
+                    <div class="card-header text-uppercase">
+                      Informacion
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ this.title }}</h5>
+                        <p class="card-text">Num. Identificador:{{ this.product.id }}</p>
+                        <p class="card-text">Cod. Producto:{{ this.product.code }}</p>
+                        <p class="card-text">Nombre del producto:{{ this.product.name }}</p>
+                        <p class="card-text">Precio de compra:{{ this.product.purchase_price }}</p>
+                        <p class="card-text">Precio de venta:{{ this.product.sale_price }}</p>
+                        <p class="card-text">Stock del producto:{{ this.product.stock }}</p>
+                        <p class="card-text">Stock minimo del producto:{{ this.product.minimum_stock }}</p>
+                        <p class="card-text">Estado del producto:{{ this.product.status }}</p>
+                        <p class="card-text">Categoria del producto:{{ this.product.categories_id }}</p>
+                        <p class="card-text">Proveedor del producto:{{ this.product.suppliers_id }}</p>
+
+                        <a routerLink="/products" routerLinkActive="active" class="btn btn-info">Regresar</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Fecha de creacion:  {{ this.product.created_at }}
+                    </div>
+                  </div>
+            </div>
+        </div>      
+    </div>
+</div>
+

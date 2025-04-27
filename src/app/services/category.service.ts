@@ -45,4 +45,9 @@ private _http = inject(HttpClient);
     return this._http.delete<ICategory>(`${this.url}/remove-category/${id}`, { headers });
   }
 
+  public countCategory():Observable<ICategory>{
+      let headers = this._userService.getHeaders();
+      return this._http.get<ICategory>(`${this.url}/total-categories`,{ headers });
+  }
+
 }

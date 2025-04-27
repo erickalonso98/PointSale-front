@@ -1,1 +1,29 @@
-<p>category-detail works!</p>
+<div class="container-fluid">
+    <div class="row nowrap">
+        <div class="bg-dark col-auto col-md-4 col-lg-2 min-vh-100 d-flex flex-column justify-content-between">
+            <app-sidebar/>
+        </div>
+        <div class="col px-4 mt-5">
+            <h1>Contenido Principal</h1>
+            <div class="container  mt-5 w-50">
+                <div class="card text-center">
+                    <div class="card-header">
+                      Informacion
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ this.title }}</h5>
+                        <p class="card-text">Num. Identificador:{{ this.category.id }}</p>
+                        <p class="card-text">Nombre de la categoria:{{ this.category.name }}</p>
+                        <p class="card-text">Descripcion de la categoria:{{ this.category.description }}</p>
+                        <a routerLink="/categories" routerLinkActive="active" class="btn btn-info">Regresar</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                      Creacion: {{ this.category.created_at }}
+                    </div>
+                
+                  </div>
+            </div>
+        </div>      
+    </div>
+</div>
+
