@@ -1,5 +1,6 @@
 import { Component,inject,OnInit } from '@angular/core';
 import { RouterLink,RouterLinkActive } from '@angular/router';
+import { ExportAsConfig, ExportAsModule, ExportAsService } from 'ngx-export-as';
 import { ProductService } from '../../services/product.service';
 import { IProduct } from '../../models/Product';
 import Swal from 'sweetalert2';
@@ -7,7 +8,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [RouterLink,RouterLinkActive],
+  imports: [RouterLink,RouterLinkActive,ExportAsModule],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
@@ -17,6 +18,7 @@ export class ProductListComponent implements OnInit {
   public message!:string;
   public products!:Array<IProduct>;
   private _productService = inject(ProductService);
+  private _exportAsService = inject(ExportAsService);
 
   constructor(){
     this.status = '';
@@ -67,6 +69,25 @@ export class ProductListComponent implements OnInit {
         });
       }
     });
+  }
+
+  public exportProductExcel():void{
+    const config: ExportAsConfig = {
+      type: 'xlsx',
+      elementIdOrContent:'table-product'
+    }
+
+    this._exportAsService.save(config,'productos').subscribe(()=>{
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "¡EnHorabuena!",
+          text:'Productos exportado con exito!',
+          showConfirmButton: false,
+          timer: 1500
+        });
+    });
+
   }
 
 }

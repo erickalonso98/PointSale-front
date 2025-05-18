@@ -23,6 +23,7 @@
     "bootstrap": "^5.3.3",
     "bootswatch": "^5.3.3",
     "chart.js": "^4.4.7",
+    "file-saver": "^2.0.5",
     "highcharts": "^11.4.8",
     "highcharts-angular": "^4.0.1",
     "moment": "^2.30.1",
