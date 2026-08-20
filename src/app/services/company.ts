@@ -1,5 +1,5 @@
 import { Service } from '@angular/core';
 
 @Service()
-export class Enterprise {
+export class Company {
 }
