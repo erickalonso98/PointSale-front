@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
   styleUrl: './create-role.component.css'
 })
 export class CreateRoleComponent implements OnInit {
-
+ 
   private _userService = inject(UserService);
   private _roleService = inject(RolesService);
   public title:string;

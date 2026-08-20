@@ -1,5 +1,5 @@
 import { Injectable,inject } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserService } from './user.service';
 import { IProduct } from '../models/Product';
@@ -19,9 +19,12 @@ export class ProductService {
     this.url = global.url;
   }
 
-    public products():Observable<IProduct>{
+    public products(page:number = 1, perPage:number = 10):Observable<IProduct>{
       let headers = this._userService.getHeaders();
-      return this._http.get<IProduct>(`${this.url}/products/`,{ headers });
+      let params = new HttpParams()
+      .set('page',page.toString())
+      .set('per_page',perPage.toString())
+      return this._http.get<IProduct>(`${this.url}/products/`,{ headers,params });
     }
 
     public product(id:number):Observable<IProduct>{
@@ -44,6 +47,12 @@ export class ProductService {
   public destroyProduct(id:number):Observable<IProduct>{
     let headers = this._userService.getHeaders();
     return this._http.delete<IProduct>(`${this.url}/removed-product/${id}`,{ headers });
+  }
+
+  public searchProduct(name:string):Observable<IProduct>{
+      let headers = this._userService.getHeaders();
+      let json = JSON.stringify(name);
+      return this._http.post<IProduct>(`${this.url}/product-search-name`,json,{ headers });
   }
 
   /*

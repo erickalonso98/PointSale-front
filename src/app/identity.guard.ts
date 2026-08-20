@@ -6,11 +6,9 @@ import { UserService } from './services/user.service';
 export const identityGuard: CanActivateFn = (route, state) => {
   var _userService = inject(UserService);
   var _router = inject(Router);
-  var identity =  _userService.getIdentity();
-  var sesions = _userService.getHeaders();
-  
+  var identity =  _userService.getIdentity();  
 
-  if(sesions){
+  if(identity){
     return true;
   }else{
     _router.navigate(["/login"]);

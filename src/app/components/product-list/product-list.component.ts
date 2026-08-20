@@ -1,6 +1,8 @@
 import { Component,inject,OnInit } from '@angular/core';
 import { RouterLink,RouterLinkActive } from '@angular/router';
 import { ExportAsConfig, ExportAsModule, ExportAsService } from 'ngx-export-as';
+import { PdfMakeWrapper, Table, Txt } from 'pdfmake-wrapper';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts'; 
 import { ProductService } from '../../services/product.service';
 import { IProduct } from '../../models/Product';
 import Swal from 'sweetalert2';
@@ -20,20 +22,28 @@ export class ProductListComponent implements OnInit {
   private _productService = inject(ProductService);
   private _exportAsService = inject(ExportAsService);
 
+  public currentPage:number;
+  public totalPage:number;
+
   constructor(){
     this.status = '';
+    this.currentPage = 1;
+    this.totalPage = 1;
+    //PdfMakeWrapper.setFonts((fonts as any).pdfMake.vfs);  
   }
 
   ngOnInit(): void {
     this.getProduct();
   }
 
-  public getProduct():void{
-    this._productService.products().subscribe(
+  public getProduct(page:number = 1):void{
+    this._productService.products(page).subscribe(
       (response:any) => {
         this.status = 'success';
         if(response.status == this.status){
-          this.products = response.products;
+          this.products = response.products.data;
+          this.currentPage = response.current_page;
+          this.totalPage = response.last_page;
           console.log(this.products);
         }
       }
@@ -69,6 +79,35 @@ export class ProductListComponent implements OnInit {
         });
       }
     });
+  }
+
+  public nextPage():void{
+    if(this.currentPage < this.totalPage){
+      this.getProduct(this.currentPage + 1)
+    }
+  }
+
+  public prevPage():void{
+    if(this.totalPage > 1){
+      this.getProduct(this.currentPage - 1);
+    }
+  }
+
+  public generatePdf():void{
+    const pdf = new PdfMakeWrapper();
+    pdf.add(new Txt('Productos').bold().fontSize(16).margin([0,0,0,10]).end);
+
+    const tableBody = [
+         ['#','Codigo','Nombre','Precio de Compra','Precio de Venta','Stock','Stock minimo','Estado'],
+      ...this.products.map(product => [product.id,product.code,product.name,product.purchase_price,product.sale_price,product.stock,product.minimum_stock,product.status])
+    ];
+
+    pdf.add(
+      new Table(tableBody).layout('lightHorizontalLines').end
+    );
+
+    pdf.create().open();
+
   }
 
   public exportProductExcel():void{

@@ -4,6 +4,7 @@
     </svg>    
   Exportar a Excel
 </button>
+<button class="btn btn-danger mt-2 ms-2" (click)="this.generatePdf()">Exportar a PDF</button>
 <nav class="navbar mt-3">
   <form class="container-fluid">
     <div class="input-group">
@@ -54,10 +55,8 @@
 
 <nav aria-label="Page navigation example">
     <ul class="pagination">
-      <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
-      <li class="page-item active"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+      <li class="page-item"><button class="page-link" (click)="this.prevPage()" [disabled]="this.currentPage === 1" >Anterior</button></li>
+      <li><span>Página {{ this.currentPage }} de {{ this.totalPage }}</span></li>
+      <li class="page-item"><button class="page-link" (click)="this.nextPage()" [disabled]="this.currentPage === this.totalPage">Siguiente</button></li>
     </ul>
   </nav>
