@@ -19,7 +19,6 @@
     "@angular/platform-browser-dynamic": "^17.1.0",
     "@angular/router": "^17.1.0",
     "@sweetalert2/themes": "^5.0.18",
-    "angular-file-uploader": "^7.1.1",
     "animate.css": "^4.1.1",
     "bootstrap": "^5.3.3",
     "bootswatch": "^5.3.3",

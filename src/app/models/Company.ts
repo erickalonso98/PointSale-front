@@ -2,7 +2,8 @@ export interface ICompany{
     id:number;
     name:string;
     email:string;
-    address:string;
+    adreess:string;
+    phone?:string;
     photo?:string;
     created_at?:Date;
     updated_at?:Date;

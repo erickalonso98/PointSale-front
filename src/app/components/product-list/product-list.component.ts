@@ -1,8 +1,6 @@
 import { Component,inject,OnInit } from '@angular/core';
 import { RouterLink,RouterLinkActive } from '@angular/router';
-import { ExportAsConfig, ExportAsModule, ExportAsService } from 'ngx-export-as';
 import { PdfMakeWrapper, Table, Txt } from 'pdfmake-wrapper';
-import * as pdfFonts from 'pdfmake/build/vfs_fonts'; 
 import { ProductService } from '../../services/product.service';
 import { IProduct } from '../../models/Product';
 import Swal from 'sweetalert2';
@@ -10,7 +8,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [RouterLink,RouterLinkActive,ExportAsModule],
+  imports: [RouterLink,RouterLinkActive],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
@@ -20,7 +18,7 @@ export class ProductListComponent implements OnInit {
   public message!:string;
   public products!:Array<IProduct>;
   private _productService = inject(ProductService);
-  private _exportAsService = inject(ExportAsService);
+  
 
   public currentPage:number;
   public totalPage:number;
@@ -91,42 +89,6 @@ export class ProductListComponent implements OnInit {
     if(this.totalPage > 1){
       this.getProduct(this.currentPage - 1);
     }
-  }
-
-  public generatePdf():void{
-    const pdf = new PdfMakeWrapper();
-    pdf.add(new Txt('Productos').bold().fontSize(16).margin([0,0,0,10]).end);
-
-    const tableBody = [
-         ['#','Codigo','Nombre','Precio de Compra','Precio de Venta','Stock','Stock minimo','Estado'],
-      ...this.products.map(product => [product.id,product.code,product.name,product.purchase_price,product.sale_price,product.stock,product.minimum_stock,product.status])
-    ];
-
-    pdf.add(
-      new Table(tableBody).layout('lightHorizontalLines').end
-    );
-
-    pdf.create().open();
-
-  }
-
-  public exportProductExcel():void{
-    const config: ExportAsConfig = {
-      type: 'xlsx',
-      elementIdOrContent:'table-product'
-    }
-
-    this._exportAsService.save(config,'productos').subscribe(()=>{
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "¡EnHorabuena!",
-          text:'Productos exportado con exito!',
-          showConfirmButton: false,
-          timer: 1500
-        });
-    });
-
   }
 
 }

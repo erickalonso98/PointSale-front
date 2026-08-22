@@ -6,11 +6,39 @@
         <div class="col px-4 mt-5">
             <h1>Contenido Principal de empresa</h1>
             <p>Este es el espacio para el contenido principal.</p>
-            <div class="container w-50 mt-5">
-                <div class="card card-body">
-                    <h2 class="text-center">Registra tu empresa</h2>
+            <form #formCompany="ngForm" (ngSubmit)="this.onSubmit(formCompany)">
+                <div class="container w-50 mt-5">
+                    <div class="card card-body">
+                    <h2 class="text-center">Actualiza tu empresa</h2>
+                   <div class="form-group">
+                    <label for="name" class="form-label">Nombre de la empresa</label>
+                    <input type="text" class="form-control" #name="ngModel" name="name" [(ngModel)]="this.company.name" required>
+                    @if(!name.valid && name.touched){
+                      <div class="text-danger">El nombre es requerido</div>
+                    }
+                   </div>
+                   <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" #email="ngModel" name="email" [(ngModel)]="this.company.email" required>
+                    @if(!email.valid && email.touched){
+                      <div class="text-danger">El email es requerido</div>
+                    }
+                   </div>
+                   <div class="form-group">
+                    <label for="address" class="form-label">Dirección</label>
+                    <input type="text" class="form-control" #adreess="ngModel" name="adreess" [(ngModel)]="this.company.adreess" required>
+                    @if(!adreess.valid && adreess.touched){
+                      <div class="text-danger">La dirección es requerida</div>
+                    }
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Teléfono</label>
+                        <input type="tel" class="form-control" #phone="ngModel" name="phone" [(ngModel)]="this.company.phone">
+                    </div>
+                    <input type="submit" value="Actualizar" class="btn btn-primary mt-3 w-25">
                 </div>
-            </div>
+                </div>
+            </form>
         </div>      
     </div>
 </div>
