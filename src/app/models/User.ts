@@ -8,7 +8,8 @@ export interface IUser{
     roles?:Array<IRole>
     password:string;
     password_confirmation:string;
-    photo?:string;
+    photo?:string | null;
+    photo_url?: string | null;
     created_at?:Date;
     updated_at?:Date;
 }

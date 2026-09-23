@@ -3,6 +3,7 @@ import { RouterLink,RouterLinkActive } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { IUser } from '../../models/User';
 import Swal from 'sweetalert2';
+import { global } from '../../services/global';
 @Component({
   selector: 'app-list-users',
   standalone: true,

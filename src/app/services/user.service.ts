@@ -94,6 +94,15 @@ export class UserService {
     }
  }
 
+ public gethHeadersFormsData(){
+    let token = this.getToken();
+    if(token){
+       return new HttpHeaders({'Authorization':`Bearer ${token}`}).set('Content-Type','multipart/form-data');
+    }else{
+       return new HttpHeaders();
+    }
+ }
+
  public logout(){
   Swal.fire({
     title: "¿Quieres salir del sistema?",
